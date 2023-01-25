@@ -69,6 +69,7 @@ body {
   padding: 10px;
   border-radius: 13px;
   background: white;
+  box-shadow: black 0px 0px 30px;
 }
 
 .rainbowTextAnimated {
@@ -142,6 +143,8 @@ body {
   position: relative;
   z-index: 2;
 }
+
+
 
 .fruit-name {
   width: 200px;
