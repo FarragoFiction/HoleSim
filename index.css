@@ -45,6 +45,7 @@ body {
 #fake-background {
   width: 100%;
   position: fixed;
+  filter: brightness(0.5);
   height: 100%;
   top: 0px;
   left: 0px;

@@ -9,7 +9,13 @@ window.onload = () => {
   audio.play();
   window.onclick = () => {
     const splash = document.querySelector("#splash");
-    splash.style.display = "none";
+    if(splash.style.display != "none"){
+      splash.style.display = "none";
+      const bg = document.querySelector("#fake-background");
+      bg.style.filter = "brightness(1.0)";
+
+
+    }
 
     const audio = document.querySelector("#audio");
     if(!started){
