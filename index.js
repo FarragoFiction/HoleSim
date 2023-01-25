@@ -3,6 +3,7 @@
 let bounce_container;
 let holeLevel = 0;
 const maxHoleLevel = 25;
+const audioSources = ["audio/651292__f3bbbo__digging-in-wet-course-sand-1.mp3","audio/651293__f3bbbo__digging-in-wet-course-sand-2.mp3"];
 window.onload = () => {
 
   window.onclick = () => {
@@ -29,6 +30,8 @@ const start = ()=>{
 }
 
 const embiggenHole = ()=>{
+  const audio = new Audio(pickFrom(audioSources));
+  audio.play();
   holeLevel ++;
   const hole = document.querySelector("#hole");
   console.log("JR NOTE: trying to embiggen ",hole.style.width)
