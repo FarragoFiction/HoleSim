@@ -3,17 +3,26 @@
 let bounce_container;
 let holeLevel = 0;
 const maxHoleLevel = 25;
+let started = false;
 const audioSources = ["audio/651292__f3bbbo__digging-in-wet-course-sand-1.mp3","audio/651293__f3bbbo__digging-in-wet-course-sand-2.mp3"];
 window.onload = () => {
-
+  audio.play();
   window.onclick = () => {
+    const splash = document.querySelector("#splash");
+    splash.style.display = "none";
+
     const audio = document.querySelector("#audio");
+    if(!started){
+      start();
+
+    }
+
     if (!audio.playing) {
       audio.play();
     }
   }
   initThemes();
-  start();
+
 
 }
 

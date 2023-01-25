@@ -12,6 +12,36 @@ body {
 
 }
 
+#splash{
+  padding: 10vh;
+  background-image: url("dirt.jpg");
+  border: 5px solid #c4c4c4;
+  z-index: 1000;
+  display: block;
+  position: absolute;
+  top: 30vh;
+  left: 30vw;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: black 0px 0px 75px ;
+  text-shadow: black 0px 0px 8px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 72px;
+  word-spacing: 5px;
+  letter-spacing: 10px;
+}
+
+#splash div{
+  font-size: 20px;
+  width: 100%;
+  text-shadow: black 0px 0px 8px;
+
+  text-align: center;
+  font-family: cav;
+  letter-spacing: normal;
+
+}
+
 #fake-background {
   width: 100%;
   position: fixed;
