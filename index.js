@@ -1,6 +1,8 @@
 
 
 let bounce_container;
+let holeLevel = 0;
+const maxHoleLevel = 25;
 window.onload = () => {
 
   window.onclick = () => {
@@ -25,6 +27,20 @@ const start = ()=>{
     oneBadImpulse();
   }
 }
+
+const embiggenHole = ()=>{
+  holeLevel ++;
+  const hole = document.querySelector("#hole");
+  console.log("JR NOTE: trying to embiggen ",hole.style.width)
+  hole.style.width = `${3+holeLevel}vw`
+  console.log("JR NOTE: trying to embiggen ",hole.style.width)
+  const body = document.querySelector("body");
+  body.style.filter=`brightness(${1-holeLevel/30})`;
+
+
+}
+
+//lol bro, you have to wander eternity obsessed with something meaningless that can neither sate you nor end, get pranked
 
 const oneBadImpulse = ()=>{
   let ele = createElementWithClass("div","bad-impulse");

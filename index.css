@@ -4,13 +4,33 @@
 }
 
 body {
-  background-image: url(dirt.jpg);
   color: white;
   margin: 0px;
   margin: 0px;
   overflow: auto;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+}
+
+#fake-background {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: -999;
+  background-image: url("dirt.jpg");
+}
+
+#hole{
+  max-width: 85vw;
+  max-height: 85vh;
+  object-fit: contain;
+  image-rendering: pixelated;
+  display: block;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
 }
 
 .bad-impulse{
