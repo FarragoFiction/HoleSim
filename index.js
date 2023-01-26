@@ -19,6 +19,7 @@ window.onload = () => {
 
     const audio = document.querySelector("#audio");
     if(!started){
+      started = true;
       start();
 
     }
