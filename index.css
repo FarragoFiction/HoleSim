@@ -38,7 +38,7 @@ body {
 
   text-align: center;
   font-family: cav;
-  letter-spacing: normal;
+  letter-spacing: 7px;
 
 }
 
@@ -56,6 +56,7 @@ body {
 #hole{
   max-width: 85vw;
   max-height: 85vh;
+  width: 4vw;
   object-fit: contain;
   image-rendering: pixelated;
   display: block;

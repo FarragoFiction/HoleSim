@@ -2,10 +2,13 @@
 
 let bounce_container;
 let holeLevel = 0;
+let hole;
 const maxHoleLevel = 25;
 let started = false;
 const audioSources = ["audio/651292__f3bbbo__digging-in-wet-course-sand-1.mp3","audio/651293__f3bbbo__digging-in-wet-course-sand-2.mp3"];
 window.onload = () => {
+  hole = document.querySelector("#hole");
+
   audio.play();
   window.onclick = () => {
     const splash = document.querySelector("#splash");
@@ -22,6 +25,10 @@ window.onload = () => {
       started = true;
       start();
 
+    }else{
+      if(holeLevel<maxHoleLevel){
+       oneBadImpulse();
+      }
     }
 
     if (!audio.playing) {
@@ -33,6 +40,54 @@ window.onload = () => {
 
 }
 
+const collisionDectionLoop = ()=>{
+  //good or bad
+  let impulses = document.querySelectorAll(".impulse");
+  let holeRect = hole.getClientRects()[0];
+  for(let impulse of impulses){
+    //does the middle of the impulse touch any part of the hole?
+    let impulseRect = impulse.getClientRects()[0]; //get rect
+    const middleX = impulseRect.x + impulseRect.width/2;
+    const middleY = impulseRect.y + impulseRect.height/2;
+    //console.log("JR NOTE: debug: ",{middleX, middleY, holeX: holeRect.x, holeY: holeRect.y, holeWidth: holeRect.width, holeHeight: holeRect.height})
+        //wiggle around the middle. 
+
+    const wiggleWidth = impulseRect.width/4;
+    const wiggleHeight = impulseRect.height/4;
+    const middleHorizontal = ()=>{
+
+      if( middleX+wiggleWidth > holeRect.x && middleX+wiggleWidth < holeRect.x + holeRect.width){
+        return true;
+      }
+
+      if( middleX-wiggleWidth > holeRect.x && middleX-wiggleWidth < holeRect.x + holeRect.width){
+        return true;
+      }
+      return false;
+    }
+
+    const middleVertical = ()=>{
+      if( middleY+wiggleHeight > holeRect.y && middleY+wiggleHeight < holeRect.y + holeRect.height){
+        return true;
+      }
+
+      if( middleY-wiggleHeight > holeRect.y && middleY-wiggleHeight < holeRect.height + holeRect.height){
+        return true;
+      }
+      return false;
+    }
+
+    if(middleHorizontal() && middleVertical()){
+      impulse.remove();
+      embiggenHole();
+      oneBadImpulse();
+    }
+  }
+  if(holeLevel < maxHoleLevel){
+    setTimeout(collisionDectionLoop, 50)
+  }
+}
+
 /*
 i just like the idea of parker being all repressed memories and bad impulses
 and slowly showing that even if he refuses to acknowledge his past
@@ -40,18 +95,17 @@ even if he keeps it buried
 he can still find healing
 */
 const start = ()=>{
-  for(let i = 0; i<10; i++){
-    oneBadImpulse();
-  }
+  oneBadImpulse();
+  collisionDectionLoop();
+
 }
 
 const embiggenHole = ()=>{
   const audio = new Audio(pickFrom(audioSources));
   audio.play();
   holeLevel ++;
-  const hole = document.querySelector("#hole");
   console.log("JR NOTE: trying to embiggen ",hole.style.width)
-  hole.style.width = `${3+holeLevel}vw`
+  hole.style.width = `${5+holeLevel}vw`
   console.log("JR NOTE: trying to embiggen ",hole.style.width)
   const body = document.querySelector("body");
   body.style.filter=`brightness(${1-holeLevel/30})`;
@@ -64,7 +118,11 @@ const embiggenHole = ()=>{
 const oneBadImpulse = ()=>{
   let ele = createElementWithClass("div","bad-impulse");
   ele.innerText = "JR TEST";
-  bounceTime(ele)
+  bounceTime(ele);
+  if(holeLevel<maxHoleLevel){
+    setTimeout(oneBadImpulse, 10000)
+  }
+
 }
 
 
@@ -104,11 +162,13 @@ const bounceTime = (ele) => {
   </div>
   */
   //ternary is so i can debug it without it zipping about
-  const xAnimations = false ? ["x-turtle"] : ["x", "x-fast", "x-zip", "x-turtle"];
-  const yAnimations = false ? ["y-turtle"] : ["y", "y-fast", "y-zip", "y-turtle"];
-  const elWrap = createElementWithClassAndParent("div", bounce_container, `el-wrap ${pickFrom(xAnimations)}`);
-  elWrap.style.left = `${getRandomNumberBetween(0, 100)}vw`;
-  elWrap.style.top = `${getRandomNumberBetween(0, 100)}vh`;
+  const xAnimations = false ? ["x-turtle"] : ["x", "x-fast"];
+  const yAnimations = false ? ["y-turtle"] : ["y", "y-fast"];
+  const elWrap = createElementWithClassAndParent("div", bounce_container, `el-wrap ${pickFrom(xAnimations)} impulse`);
+  elWrap.style.left = `${getRandomNumberBetween(0, 50)}vw`;
+  elWrap.style.top = `${getRandomNumberBetween(0, 50)}vh`;
+  //elWrap.style.left = `50vw`; (hole location)
+  //elWrap.style.top = `54vh`;
   const el = createElementWithClassAndParent("div", elWrap, `el ${pickFrom(yAnimations)}`);
   el.style.width = "50px";
   el.style.height = "50px";
