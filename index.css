@@ -69,6 +69,7 @@ body {
   color: red;
   border: 1px dotted red;
   padding: 10px;
+  max-width: 500px;
   border-radius: 13px;
   background: white;
   box-shadow: black 0px 0px 30px;
@@ -156,8 +157,7 @@ body {
 }
 
 .fruit-img {
-  width: 50px;
-  height: 50px;
+  max-width: 300px;
 }
 
 .sales-pitch {
@@ -238,8 +238,7 @@ body {
 }
 
 .el {
-  width: var(--width);
-  height: var(--width);
+  width: 300px;
   z-index: 1;
 
 }

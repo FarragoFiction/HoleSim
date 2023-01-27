@@ -53,8 +53,8 @@ const collisionDectionLoop = () => {
     //console.log("JR NOTE: debug: ",{middleX, middleY, holeX: holeRect.x, holeY: holeRect.y, holeWidth: holeRect.width, holeHeight: holeRect.height})
     //wiggle around the middle. 
 
-    const wiggleWidth = impulseRect.width / 2;
-    const wiggleHeight = impulseRect.height / 2;
+    const wiggleWidth = holeRect.width / 2;
+    const wiggleHeight = holeRect.height / 2;
     const middleHorizontal = () => {
 
       if (middleX + wiggleWidth > holeRect.x && middleX + wiggleWidth < holeRect.x + holeRect.width) {
@@ -85,7 +85,7 @@ const collisionDectionLoop = () => {
     }
   }
   if (holeLevel < maxHoleLevel) {
-    setTimeout(collisionDectionLoop, 200)
+    setTimeout(collisionDectionLoop, 500)
   }
 }
 
@@ -118,7 +118,8 @@ const embiggenHole = () => {
 
 const oneBadImpulse = () => {
   let ele = createElementWithClass("div", "bad-impulse");
-  ele.innerText = "JR TEST";
+  
+  ele.innerText = pickFrom(bad_impulses);
   bounceTime(ele, false);
   if (holeLevel < maxHoleLevel) {
     setTimeout(oneBadImpulse, 10000)
@@ -189,8 +190,7 @@ const bounceTime = (ele, debug) => {
   }
   const elWrap = createElementWithClassAndParent("div", bounce_container, `el-wrap impulse`);
   const el = createElementWithClassAndParent("div", elWrap, `el`);
-  el.style.width = "50px";
-  el.style.height = "50px";
+
 
   el.append(ele);
   if (debug) {
@@ -232,7 +232,7 @@ const bounceTime = (ele, debug) => {
     }
     elWrap.style.top = `${parseInt(elWrap.style.top) + 10 * yDirection}px`;
     elWrap.style.left = `${parseInt(elWrap.style.left) + 10 * xDirection}px`;
-    setTimeout(() => { requestAnimationFrame(bounce) }, 50)
+    setTimeout(() => { requestAnimationFrame(bounce) }, 300)
 
 
   }

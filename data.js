@@ -1,17 +1,14 @@
 //https://genders.wtf/gauntlet/
 
 
-const raw_fruit_words = `fruit
-melon
-fruit
-fruit
-fruit
-melon
-berry
-fruit
-berry
-apple`
-const fruit_words = raw_fruit_words.split("\n");
+const raw_bad_impulses = `I don't need to drink any water.
+It's better for everyone if I stay hidden away.
+Gun-tan is the only one who undertands me. 
+I remember how it felt when everyone died. 
+I remember my clean coat and brushed hair. 
+I remember how shiny Gun-Tan was when the Manager gave her to me.
+I remember how proud I was that I was responsible enough to be entrusted with Gun-tan.`
+const bad_impulses = raw_bad_impulses.split("\n");
 
 
 const raw_convo3 = `Work! Yes! Work!
